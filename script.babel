@@ -1,0 +1,148 @@
+const renderer = new marked.Renderer();
+renderer.link = function (href, title, text) {
+  return `<a target="_blank" href="${href}">${text}` + '</a>';
+}
+ 
+
+ 
+const Preview = (props) => {
+  return (
+      <div id='preview'  className="normal" dangerouslySetInnerHTML={{__html: marked(props.input, { renderer: renderer })}} />
+    )
+}
+
+class ControlledInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: `# Welcome to my React Markdown Previewer!
+
+## Feel free to practice your markdown skills here!
+
+### You can make code sections, \`<div></div>\`, like so. 
+
+You can even make multi line code!
+
+\`\`\`
+      function = () => {
+return 100
+}     
+\`\`\`
+
+You can make text into **italics**...
+
+or was it _bold_...
+
+**_boltalics!!!_**
+
+You can do something called a 
+>Block Quote
+
+- You can make a list of all of your favorite kinds of clouds
+  - Fluffy clouds
+    - Animal shaped clouds
+      - Cumulonimbus clouds
+
+You can also make numbered lists for your favorite pasta varieties
+1. Rigatoni
+1. Spaghetti
+1. Fettuccine
+
+You can also make [links](https://www.markdownguide.org/). This one here links to a markdown guide.
+
+You can even link images with markdown
+![Cute Cat](https://i.pinimg.com/originals/78/1b/e6/781be6cd01b8cb5736a7c8d8e5465f28.jpg)  
+
+But all of this is just **_scratching the surface_** of what markdown can do.
+
+So use this website to hone your markdown skills!
+`
+      
+    };
+    // change code below this line
+this.handleChange = this.handleChange.bind(this);
+this.changeTextClass = this.changeTextClass.bind(this) 
+this.changePrevClass = this.changePrevClass.bind(this) 
+this.focusUp = this.focusUp.bind(this)
+    
+  }
+
+  
+  focusUp(){
+console.log("hi")
+  }
+
+handleChange(event){
+this.setState({
+      input: event.target.value
+    });
+}
+  
+  changeTextClass(){
+document.getElementById('preview-head').addEventListener('mouseenter', () =>{console.log("enter");
+                                                                            document.getElementById('preview').focus()} )
+    if( document.getElementById('editor').className == ""){
+       document.getElementById('editor').className = "expanded"
+      document.getElementById('text-head').className = "text-head-exp"
+      document.getElementById('text-icon').className = "fa fa-compress"
+    }
+    else{
+       document.getElementById('editor').className = ""
+      document.getElementById('text-head').className = "text-head"
+      document.getElementById('text-icon').className = "fa fa-arrows-alt"
+    }
+  }
+  changePrevClass(){
+      document.getElementById('preview').focus()
+    if( document.getElementById('preview').className == "normal"){
+       document.getElementById('preview').className = "expanded"
+      document.getElementById('preview-head').className = "prev-head-exp"
+      document.getElementById('prev-icon').className = "fa fa-compress"
+      document.getElementById('prev-button').className = "btn prev-btn-exp"
+    }
+    else{
+       document.getElementById('preview').className = "normal"
+      document.getElementById('preview-head').className = "preview-head"
+      document.getElementById('prev-icon').className = "fa fa-arrows-alt"
+      document.getElementById('prev-button').className = "btn prev-btn"
+    }
+  }
+   
+  render() {
+    
+   
+    
+    return (
+      <div>
+        <h1>Markdown Previewer</h1>
+        
+     <div id="text-head"  className="text-head">
+       <h2>Markdown</h2>
+       
+       <div id="text-button-div">
+       <button id="text-button" className='btn'  onClick={this.changeTextClass} ><i id="text-icon" className="fa fa-arrows-alt" /></button>
+       </div>
+       
+       
+        </div> 
+<textarea id="editor" value = {this.state.input} onChange = {this.handleChange.bind(this)}/>
+         
+          
+        
+        <div id="preview-head"  className="preview-head" >
+         
+          <h2 className="normal">Preview</h2>
+           <button id="prev-button"  className="btn prev-btn" onClick={this.changePrevClass} ><i id="prev-icon" className="fa fa-arrows-alt" /></button>
+        </div>
+        <Preview id="preview" onChange={this.focusUp()} className="normal" input={this.state.input}/>
+      </div>
+    );
+  }
+};
+
+
+
+
+ReactDOM.render(<ControlledInput />, document.getElementById('root'))
+
+

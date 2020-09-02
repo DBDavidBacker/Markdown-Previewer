@@ -1,0 +1,126 @@
+body{
+  background-color: grey;
+  
+}
+
+main{
+margin: auto;
+background-color: #e0dedc;
+width: 700px;
+text-align: center;
+padding: 50px;  
+}
+
+
+h1{
+  padding-bottom: 20px;
+}
+
+.preview-position{
+ 
+  margin: auto; 
+}
+
+.text-position{
+  width: 400px;
+}
+
+.heading-dimensions{
+  height: 50px;
+  background-color: #ccc59d;
+  margin: auto;
+}
+ 
+#preview{
+  @extend .preview-position;
+  
+  background-color: white;
+  text-align: left;
+  overflow:auto;
+}
+
+
+ 
+.normal{
+  height: 200px;
+  width: 500px;
+
+}
+ 
+.preview-head{
+  @extend .heading-dimensions;
+  @extend .preview-position;
+  width: 500px;
+ 
+}
+
+.prev-head-exp{ 
+  @extend .heading-dimensions;
+  @extend .preview-position;
+  width: 550px;
+  position: relative;
+}
+
+
+.text-head{
+  @extend .heading-dimensions;
+  width: 400px;
+  padding-left: 2px;
+  padding-right: 2px; 
+  position: relative;
+}
+
+.text-head-exp{
+   @extend .heading-dimensions;
+  width: 550px;
+  padding-left: 2px;
+  padding-right: 2px;
+  position: relative;
+}
+
+textarea{ 
+  
+  @extend .text-position;
+  height: 200px; 
+  
+}
+
+#text-button{
+  position: absolute;
+  right: 0;
+  top: 0;
+} 
+ 
+#text-button:hover{
+  color: pink;
+}
+
+
+.prev-btn{
+ position: relative;
+  left: 230px;
+  bottom: 210px;
+}
+
+.prev-btn-exp{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+#prev-button:hover{
+  color: pink;
+}
+
+.expanded{
+  width: 550px;
+  height: 600px;
+}
+
+.test{
+  color: green;
+}
+
+.fa-arrows-alt{
+  transform: rotate(45deg);
+}
